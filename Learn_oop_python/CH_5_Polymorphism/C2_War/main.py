@@ -3,7 +3,8 @@ import random
 
 class CardGame:
     def __init__(self):
-        # ?
+        self.deck = DeckOfCards()
+        return self.deck.shuffle_deck()
 
     def play(self):
         print("Nothing to play...")
@@ -11,13 +12,20 @@ class CardGame:
 
 class War(CardGame):
     def __init__(self):
-        # ?
+        super().__init__()
+        self.player1_hand = []
+        self.player2_hand = []
 
     def play(self):
-        # ?
+        self.player1_hand = self.__deal_hand()
+        self.player2_hand = self.__deal_hand()
+        self.__battle()
 
     def __deal_hand(self):
-        # ?
+        new_list = []
+        for i in range(0, 5):
+            new_list.append(self.deck.deal_card())
+        return new_list
 
         # don't touch below this line
 
