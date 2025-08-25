@@ -20,3 +20,6 @@ def test():
     print("Result for current directory:")
     print(result)
     print("")
+
+
+test()
