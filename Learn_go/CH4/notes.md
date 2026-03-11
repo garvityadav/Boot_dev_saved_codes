@@ -74,4 +74,38 @@ myTruck := truck{
 fmt.Println(myTruck.brand)
 fmt.Println(myTruck.model)
 ```
+### Memory Layout in structs
+Structs should be layed out from descending order of memory to avoid bad memory layot and left over space between the datatypes.
 
+for example : 
+```go
+type car struct{
+    model string
+    wheels int16
+}
+```
+### Something interesting i came accross : 
+When we store sting the memory is distributed as : 
+1. Header : is a small struct that stays on the stack and describes where the string data is:
+- On 64 bit system : 8 byte for pointer + 8 byte for the length of string
+- On 32 bit system : 4 byte for pointer + 4 byte for the length of string
+
+2. Backing Array:
+Backing array is the array where the stirng characters are store. Go uses UTF-8 by default to store the ascii and non ascii characters.
+- Ascii character takes 1 byte or 8 bit per character in the array. 
+- Non ascii character takes 2 to 3 bytes each.
+- Emojis take upto 4 bytes each.
+
+### The big brain :
+Let say we save name := "garvit"
+Under the hood the variable 'name' is 16-byte header (on 64-bit)
+the data (backing array) is sitting elsewhere in the memory and the header is just pointing to that memory.
+So the struct of the header will be:
+```go
+type StringHeader struct{
+
+    PointerToBytes  uintpr  // 8 bytes pointer
+    LengthToBytes   int     // 8 bytes
+}
+```
+so wherever you are using the 'name' , we are using the header which is pointing to the memory where the backing array is. So go effectively only copies the header and not the backing array. This is the reason go passes long sting fast.
