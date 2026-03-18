@@ -25,3 +25,26 @@ box := rectange{23,28}
 fmt.Println(box.area()) // this will print the area for the box
 ```
 
+## Multiple Interfaces
+A single interface could be implemented by multiple structs. To find out which struct implements the interface , we check it using functions. 
+
+for example 
+```go
+type count interface{
+    wheelsCount()
+}
+
+type car struct{
+    colour string
+    engineCC int
+}
+
+type plane struct{
+    
+    hoseLength int
+}
+```
+To implement the interface in both the structs : 
+```go
+func (c car) 
+``` 
