@@ -39,7 +39,12 @@ newSlice := make([]int,length int ,capacity int)
 // capacity is generally not needed
 newSliceB := make([]int, length)
 ```
-    
+Note:
+```
+Use []int{} when reading data from a dynamic source where the size is completely unknown (like a network stream or user typing).
+
+Use make([]int, 0, n) when processing loops, matrices, or paginated database results where you know the limit.
+```    
 ### Variadic 
 We can use ... to spread the array for an argument in a function. Example : 
 ```go 
