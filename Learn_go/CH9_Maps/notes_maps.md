@@ -30,3 +30,46 @@ element , ok := newMap(key) // if found , ok returns true and the value will be 
 
 
 ```
+## key Types:
+
+Keys in map are of any type which are comparable. In go compareable types are : 
+1. Boolean,
+2. string,
+3. numeric,
+4. pointer,
+5. Channel,
+6. Interface type.
+
+To create a map of string which is a mapt of string as key and int as value, we:
+
+```go 
+hits:=make(map[string]map[string]int)
+```
+
+but to create the above map , we have to check wether the internal map exist (map[string]int). 
+
+```go 
+func add(m map[string]map[string]int,path,country string){
+    mm,ok:=m[path]
+    if !ok == true{
+       mm= make(map[string]int)
+        m[path] = mm 
+    }
+    mm[country]++
+}
+add(hits,"/doc/","au")
+```
+But the above gets tedious very easily , so ,
+
+```go 
+type Key struct{
+    Path,Country string
+}
+hits:=make(map[Key]int)
+
+// to add 
+hits[Key{"/","vn"}]++ 
+
+//to get
+n:= hits[Key{"/ref/spec","ch"}]
+```
