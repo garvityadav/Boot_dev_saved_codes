@@ -73,3 +73,16 @@ hits[Key{"/","vn"}]++
 //to get
 n:= hits[Key{"/ref/spec","ch"}]
 ```
+
+## Nested Maps
+We can use nested maps also. For example : 
+
+```go 
+// {M:{mehul:1}}
+nestedMap := make(map[string]map[string]int)
+```
+
+The *unicode* library can be used to get the unicode of runes. 
+The *strings* library can be used to manipulate the stings.
+Strings library has strings.Fields which splits the stirng into slice just like split() function in javascript. 
+
