@@ -36,6 +36,12 @@ ch<-true
 ```
 
 - receive data : 
+
 ```go 
 v:=<-ch
 ```
+
+## Note 
+You can send empty struct to the channel to just give it a signal without using memory or storing any data.
+
+
