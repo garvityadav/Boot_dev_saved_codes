@@ -20,7 +20,7 @@ func chargeForLineItem[T lineItem](newItem T, oldItems []T, balance float64) ([]
 type lineItem interface {
 	GetCost() float64
 	GetName() string
-}
+
 
 type subscription struct {
 	userEmail string
